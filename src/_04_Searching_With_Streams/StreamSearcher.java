@@ -2,6 +2,7 @@ package _04_Searching_With_Streams;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public class StreamSearcher {
@@ -11,11 +12,27 @@ public class StreamSearcher {
 	public long containsCount(String[] strArr, String strToCount) {
 		//2. Convert the String array to a stream
 		
+		Stream stringStream = Arrays.stream(strArr);
+		
 		//3. Use the filter method with a lambda to extract all the String
 		//   elements that match the String parameter.
 		
+//		stringStream = stringStream.filter(new Predicate<String>() {
+//
+//			@Override
+//			public boolean test(String str) {
+//				
+//				return str.equals(strToCount);
+//				
+//			}
+//
+//		});
+		
+		
+		stringStream = stringStream.filter((str) -> str.equals(strToCount));
+		
 		//4. Return the count of the filtered stream.
 		
-		return 0;
+		return stringStream.count();
 	}
 }
